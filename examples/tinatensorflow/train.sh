@@ -21,6 +21,16 @@ pip3 install matplotlib
 
 echo "Run the notebook"
 
+# Warning: note that this is non-parallel
+# If you really run this in the same folder in parallel
+# the hard-coded output file of nbconvert would be overwritten
+# you could add folders per job, along
+
+# mkdir job-${SLURM_JOB_ID}
+# cd job-${SLURM_JOB_ID}
+# jupyter nbconvert --to notebook --execute ../cnn.ipynb
+#
+# to really allow this.
 jupyter nbconvert --to notebook --execute cnn.ipynb
 if [ -f cnn.nbconvert.ipynb ]; then
     echo "Results found"
